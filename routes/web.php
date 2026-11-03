@@ -7,5 +7,5 @@ Route::get('/', function () {
 });
 
 Route::get('/students', function () {
-    return 'Welcome to Student Management System';
+    return view('students');
 });
