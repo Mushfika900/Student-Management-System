@@ -11,4 +11,9 @@ class StudentController extends Controller
     {
         return View('students');
     }
+    
+    public function create()
+    {
+        return View('create_student');
+    }
 }
