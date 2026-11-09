@@ -28,5 +28,9 @@ class StudentController extends Controller
     return redirect('/students')
     ->with('success','Student added successfully!');
     }
+    public function edit(Student $student)
+    {
+        return View('edit_student',compact('student'));
+    }
 }
         
