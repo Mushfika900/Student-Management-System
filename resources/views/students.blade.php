@@ -14,7 +14,44 @@
         
     @endif
     <h1>Student Management System</h1>
-    <p>Welcome to the Student Management System. Here you can manage student records, including adding new students, viewing existing records and updating or deleting student information.</p>
-    <a href="{{ route('students.create') }}">Add Student</a>
+    <p>Welcome to the Student Management System.
+         Here you can manage student records, including 
+         adding new students, viewing existing records
+          and updating or deleting student information.</p>
+        </p>
+
+        @if (session('success'))
+        <p style="color: green;">
+            {{ session('success') }}
+        </p>
+        
+        @endif
+        
+    <a href="{{ route('students.create') }}">Add Student</a><br><br>
+    <h2>Student List</h2>
+    <table border="1" cellpadding="10" cellspacing="0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                {{-- <th>Actions</th> --}}
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($students as $student)
+                <tr>
+                    <td>{{ $student->id }}</td>
+                    <td>{{ $student->name }}</td>
+                    <td>{{ $student->email }}</td>
+                    <td>{{ $student->phone }}</td>
+                </tr>
+                @empty
+                    <tr>
+                        <td colspan="4">No students found.</td>
+                </tr>
+            @endforelse
+        </tbody>
 </body>
 </html>

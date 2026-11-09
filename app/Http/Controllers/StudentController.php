@@ -10,7 +10,8 @@ class StudentController extends Controller
 {
     public function index()
     {
-        return View('students');
+        $students = Student::all();
+        return View('students',compact('students'));
     }
     
     public function create()
@@ -25,6 +26,7 @@ class StudentController extends Controller
     ]);
     Student::create($validated);
     return redirect('/students')
-    ->with('success','Stusent added successfully!');
+    ->with('success','Student added successfully!');
     }
 }
+        
