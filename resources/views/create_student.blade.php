@@ -8,7 +8,7 @@
 <body>
     <h1>Add New Student</h1>
 
-    <form action="#" method="POST">
+    <form action="{{ route('students.store') }}" method="POST">
         @csrf
 
         <label>Student Name:</label>
