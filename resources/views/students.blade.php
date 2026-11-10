@@ -20,12 +20,6 @@
           and updating or deleting student information.</p>
         </p>
 
-        @if (session('success'))
-        <p style="color: green;">
-            {{ session('success') }}
-        </p>
-        
-        @endif
         
     <a href="{{ route('students.create') }}">Add Student</a><br><br>
     <h2>Student List</h2>
@@ -36,7 +30,7 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
-                {{-- <th>Actions</th> --}}
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -46,6 +40,13 @@
                     <td>{{ $student->name }}</td>
                     <td>{{ $student->email }}</td>
                     <td>{{ $student->phone }}</td>
+                    <td>
+                        <a href="{{ route('students.edit', $student->id) }}">Edit</a>
+                    </td>
+                            @csrf
+                            {{-- @method('DELETE') --}}
+                            {{-- <button type="submit" onclick="return confirm('Are you sure you want to delete this student?')">Delete</button> --}}
+                        </form>
                 </tr>
                 @empty
                     <tr>

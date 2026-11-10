@@ -32,5 +32,19 @@ class StudentController extends Controller
     {
         return View('edit_student',compact('student'));
     }
+
+    public function update(Request $request, Student $student)
+   {
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:students,email,' . $student->id,
+        'phone' => 'required|string|max:20',
+    ]);
+
+    $student->update($validated);
+
+    return redirect('/students')
+        ->with('success', 'Student updated successfully!');
+}
 }
         
