@@ -8,11 +8,20 @@ use Illuminate\View\View;
 
 class StudentController extends Controller
 {
-    public function index()
-    {
-        $students = Student::all();
-        return View('students',compact('students'));
-    }
+    public function index(Request $request)
+{
+    $search = $request->input('search');
+
+    $students = Student::query()
+        ->when($search, function ($query) use ($search) {
+            $query->where('name', 'like', '%' . $search . '%')
+                  ->orWhere('email', 'like', '%' . $search . '%')
+                  ->orWhere('phone', 'like', '%' . $search . '%');
+        })
+        ->get();
+
+    return view('students', compact('students'));
+}
     
     public function create()
     {

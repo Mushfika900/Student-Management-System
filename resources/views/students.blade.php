@@ -23,6 +23,15 @@
         
     <a href="{{ route('students.create') }}">Add Student</a><br><br>
     <h2>Student List</h2>
+    <form action="{{ route('students.index') }}" method="GET">
+    <input type="text"
+           name="search"
+           value="{{ request('search') }}"
+           placeholder="Search students...">
+
+    <button type="submit">Search</button>
+    <a href="{{ route('students.index') }}">Reset</a>
+</form>
     <table border="1" cellpadding="10" cellspacing="0">
         <thead>
             <tr>
